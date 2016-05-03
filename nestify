@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon May 02 21:16:19 2016
+
+@author: Anna
+"""
+"""This is a puzzle that occurred to me when parsing XML to JSON. It may be 
+actually useful for complicated database schemas."""
+
+
+def nestify(l):
+    """Takes a list l and returns nested dictionaries where each elements from
+    the list is both a key to the inner dictionary and a value to the outer, 
+    except for the last element of the list, one which is only a value.
+    For best understanding, feed w = [ 'a', 'b', 'c', 'd', 'e', 'f', 'v'] to the
+    function and look at the output."""
+    n = len(l)
+    if n==2:
+        key = l[0]
+        value = l[1]
+    else:
+        key = l[0]
+        value = nestify(l[1:])
+    return {key:value}                   
+    
+
