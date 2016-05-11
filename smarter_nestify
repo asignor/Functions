@@ -1,0 +1,15 @@
+def smarter_nestify(l, record):
+  """Receives a list l and a dictionary record. Does the same as nestify however it respects the pre-esiting information in record."""
+    """adapted from: 
+    http://stackoverflow.com/questions/37014500/how-to-use-recursion-to-nest-dictionaries-while-integrating-with-existing-record
+    """
+
+    if len(l) == 2:
+        key = l[0]
+        value = l[1]
+        return {key: value}
+    else:
+        key = l[0]
+        #print 'attempting to apply .get method to {} with key {}'.format(record, key)
+        record[key] = smarter_nestify(l[1:], record.get(key, {}))                
+        return record
